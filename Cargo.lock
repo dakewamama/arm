@@ -15,6 +15,7 @@ dependencies = [
 name = "catalyst-crank"
 version = "0.1.0"
 dependencies = [
+ "const-crypto",
  "pinocchio",
  "solana-address",
 ]
@@ -24,6 +25,16 @@ name = "cfg-if"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
+
+[[package]]
+name = "const-crypto"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1c06f1eb05f06cf2e380fdded278fbf056a38974299d77960555a311dcf91a52"
+dependencies = [
+ "keccak-const",
+ "sha2-const-stable",
+]
 
 [[package]]
 name = "cpufeatures"
@@ -87,6 +98,12 @@ dependencies = [
  "typenum",
  "version_check",
 ]
+
+[[package]]
+name = "keccak-const"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "57d8d8ce877200136358e0bbff3a77965875db3af755a11e1fa6b1b3e2df13ea"
 
 [[package]]
 name = "libc"

@@ -3,12 +3,14 @@
 mod constants;
 mod state;
 mod instructions;
+mod events;
 
 use pinocchio::{
     error::ProgramError,
     AccountView,
     ProgramResult,
 };
+use events::EMIT_EVENT_IX_DISC;
 
 pinocchio::entrypoint!(process_instruction);
 
@@ -23,6 +25,7 @@ pub fn process_instruction(
 
     match *discriminator {
         0 => instructions::advance_period::process(accounts),
+        EMIT_EVENT_IX_DISC => Ok(()),
         _ => Err(ProgramError::InvalidInstructionData),
     }
 }
