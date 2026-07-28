@@ -25,6 +25,7 @@ pub fn process_instruction(
 
     match *discriminator {
         0 => instructions::advance_period::process(accounts),
+        1 => instructions::mark_expired::process(accounts),
         EMIT_EVENT_IX_DISC => Ok(()),
         _ => Err(ProgramError::InvalidInstructionData),
     }
