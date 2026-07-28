@@ -5,6 +5,8 @@ use pinocchio::{
     ProgramResult,
 };
 
+use crate::constants::ID;
+use crate::events::{emit_event, PeriodAdvancedEvent};
 use crate::state::SubscriptionPeriodView;
 
 pub fn process(accounts: &mut [AccountView]) -> ProgramResult {
@@ -12,17 +14,39 @@ pub fn process(accounts: &mut [AccountView]) -> ProgramResult {
         .first()
         .ok_or(ProgramError::NotEnoughAccountKeys)?;
 
-    let data = subscription_account.try_borrow()?;
-    let view = SubscriptionPeriodView::load(&data)?;
+    let event_authority = accounts
+        .get(1)
+        .ok_or(ProgramError::NotEnoughAccountKeys)?;
 
-    if view.is_cancelled() {
-        return Err(ProgramError::InvalidAccountData);
-    }
+    let self_program = accounts
+        .get(2)
+        .ok_or(ProgramError::NotEnoughAccountKeys)?;
 
-    let current_ts = Clock::get()?.unix_timestamp;
+    let subscription_address = *subscription_account.address();
 
-    if view.period_has_elapsed(current_ts) {
-        // Event emission happens here in the next commit
+    let (period_elapsed, new_period_start_ts) = {
+        let data = subscription_account.try_borrow()?;
+        let view = SubscriptionPeriodView::load(&data)?;
+
+        if view.is_cancelled() {
+            return Err(ProgramError::InvalidAccountData);
+        }
+
+        let current_ts = Clock::get()?.unix_timestamp;
+
+        (
+            view.period_has_elapsed(current_ts),
+            view.current_period_start_ts() + view.period_length_secs(),
+        )
+    };
+
+    if period_elapsed {
+        let event = PeriodAdvancedEvent {
+            subscription: subscription_address,
+            new_period_start_ts,
+        };
+
+        emit_event(&ID, event_authority, self_program, &event.to_bytes())?;
     }
 
     Ok(())
