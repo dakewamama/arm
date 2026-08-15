@@ -1,10 +1,10 @@
 use pinocchio::address::declare_id;
+use pinocchio::Address;
 
-declare_id!("11111111111111111111111111111111");
+declare_id!("4QHqY9xtVyGmHVM9h5DD1i4zXQR7KabgahyQsY8eCV1o");
 
-// pub const SUBSCRIPTION_PROGRAM_ID: [u8; 32] = [
-//     //derive it alonge the line
-// ];
+pub const SUBSCRIPTIONS_PROGRAM_ID: Address = 
+    solana_address::address!("De1egAFMkMWZSN5rYXRj9CAdheBamobVNubTsi9avR44");
 
 pub const PERIOD_HOURS_OFFSET: usize = 115;
 pub const CURRENT_PERIOD_START_TS_OFFSET: usize = 139;

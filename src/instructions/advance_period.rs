@@ -5,7 +5,7 @@ use pinocchio::{
     ProgramResult,
 };
 
-use crate::constants::ID;
+use crate::constants::{ID, SUBSCRIPTIONS_PROGRAM_ID};
 use crate::events::{emit_event, PeriodAdvancedEvent};
 use crate::state::SubscriptionPeriodView;
 
@@ -21,6 +21,10 @@ pub fn process(accounts: &mut [AccountView]) -> ProgramResult {
     let self_program = accounts
         .get(2)
         .ok_or(ProgramError::NotEnoughAccountKeys)?;
+
+    if subscription_account.owner() != &SUBSCRIPTIONS_PROGRAM_ID {
+        return Err(ProgramError::IncorrectProgramId);
+    }
 
     let subscription_address = *subscription_account.address();
 

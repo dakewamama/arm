@@ -13,6 +13,7 @@ use pinocchio::{
 use events::EMIT_EVENT_IX_DISC;
 
 pinocchio::entrypoint!(process_instruction);
+pinocchio::nostd_panic_handler!();
 
 pub fn process_instruction(
     _program_id: &pinocchio::Address,
