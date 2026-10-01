@@ -18,14 +18,18 @@
   malformed/version rejection, lifecycle boundaries, recurring arithmetic/staleness,
   one-shot consumption and implication soundness. Git diff whitespace check passes.
 - SDK baseline: 3 tests and TypeScript check pass.
-- Local catalyst-indexer (remote cataloger): 23 tests pass; pre-existing fmt/Clippy failures.
+- SDK semantic ABI: 6 Rust tests, 3 Bun tests and TypeScript check pass.
+- Cataloger resolver: 7 tests plus 23 legacy tests pass; fmt and strict Clippy pass.
 
 ## Real blockers
 
-- Separate indexer location and architecture book not yet identified.
+- No blocker for the current reuse audit. Architecture book remains unlocated.
+- GitHub confirms catalyst-indexer was renamed cataloger; there is no distinct indexer
+  among these checkouts.
 
 ## Next critical path
 
-- Catalyst semantic ABI after ARM commit/push.
+- ARM, SDK ABI and Cataloger resolver milestones committed and pushed.
+- Next: official token interface compatibility and native fixtures/revoke round trip.
 - Schema fixed at 0.1; protocol fixtures must justify refinements.
-- Verify GitHub identities for remaining repositories before changing their responsibilities.
+- Reuse audit recorded in catalyst-sdk/docs/research/REUSE_BOUNDARIES.md.
