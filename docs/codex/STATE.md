@@ -10,7 +10,8 @@
 ## Verified upstream
 
 - Permit2 one-shot invalidation semantics: targeted source/tests, not executed locally.
-- No Subscriptions source study; SUB-0 remains locked.
+- Initial Subscriptions source study began after an incomplete SUB-0 review; no
+  adapter or upstream source edits were made. Further study is held for Cataloger CI.
 
 ## Test status
 
@@ -18,18 +19,22 @@
   malformed/version rejection, lifecycle boundaries, recurring arithmetic/staleness,
   one-shot consumption and implication soundness. Git diff whitespace check passes.
 - SDK baseline: 3 tests and TypeScript check pass.
-- SDK semantic ABI: 6 Rust tests, 3 Bun tests and TypeScript check pass.
+- SDK: 42 Rust tests across ABI and native token adapters; 3 Bun tests and TypeScript
+  check pass locally. These results do not establish hosted CI success.
 - Cataloger resolver: 7 tests plus 23 legacy tests pass; fmt and strict Clippy pass.
 
 ## Real blockers
 
-- No blocker for the current reuse audit. Architecture book remains unlocated.
+- Cataloger GitHub jobs cannot start: account billing lock confirmed by job annotation.
+  Architecture book remains unlocated.
 - GitHub confirms catalyst-indexer was renamed cataloger; there is no distinct indexer
   among these checkouts.
 
 ## Next critical path
 
 - ARM, SDK ABI and Cataloger resolver milestones committed and pushed.
-- Next: official token interface compatibility and native fixtures/revoke round trip.
+- Native SPL/Token-2022 fixtures and revoke round trips are pushed at SDK 323b873.
+- Cataloger correction a88dbd8 removes ARM semantics and clarifies support boundaries.
+- Next: hosted Cataloger CI must pass before Subscriptions work resumes.
 - Schema fixed at 0.1; protocol fixtures must justify refinements.
 - Reuse audit recorded in catalyst-sdk/docs/research/REUSE_BOUNDARIES.md.
