@@ -11,7 +11,7 @@
 
 - Permit2 one-shot invalidation semantics: targeted source/tests, not executed locally.
 - Initial Subscriptions source study began after an incomplete SUB-0 review; no
-  adapter or upstream source edits were made. Further study is held for Cataloger CI.
+  adapter or upstream source edits were made. Final local SUB-0 review now unlocks study.
 
 ## Test status
 
@@ -25,7 +25,8 @@
 
 ## Real blockers
 
-- Cataloger GitHub jobs cannot start: account billing lock confirmed by job annotation.
+- Cataloger hosted CI is EXTERNALLY BLOCKED by an account billing lock. This does not
+  invalidate exact local gate evidence; the owner explicitly authorized progression.
   Architecture book remains unlocated.
 - GitHub confirms catalyst-indexer was renamed cataloger; there is no distinct indexer
   among these checkouts.
@@ -35,6 +36,8 @@
 - ARM, SDK ABI and Cataloger resolver milestones committed and pushed.
 - Native SPL/Token-2022 fixtures and revoke round trips are pushed at SDK 323b873.
 - Cataloger correction a88dbd8 removes ARM semantics and clarifies support boundaries.
-- Next: hosted Cataloger CI must pass before Subscriptions work resumes.
+- SDK Freeze/Thaw now use Direct operational authority; ARM remains unchanged.
+- Final local gate: ARM 12, Cataloger 30 and SDK 42 Rust tests, 3 Bun tests, typecheck,
+  formatting and strict Clippy pass. Next: Subscriptions maintainer study, no adapter.
 - Schema fixed at 0.1; protocol fixtures must justify refinements.
 - Reuse audit recorded in catalyst-sdk/docs/research/REUSE_BOUNDARIES.md.
